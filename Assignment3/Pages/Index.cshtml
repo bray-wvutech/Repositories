@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row">
+@foreach (Models.Movie movie in Model.Movies)
+{
+    <div class="col-4">
+        <div class="card text-center p-3">
+            <div>
+                <h3>@Html.DisplayFor(m => movie.Title)</h3>
+            </div>
+            <div>
+                <img src="@movie.Image" style="height: 200px"/>
+            </div>
+            <div>
+                <a asp-page="Details" asp-route-id="@movie.Id" 
+                    class="btn btn-primary center">Details</a>
+            </div>
+        </div>
+    </div>
+}
+</div>
