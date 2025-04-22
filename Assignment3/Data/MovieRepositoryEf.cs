@@ -16,4 +16,13 @@ public class MovieRepositoryEf : IMovieRepository
     {
         return _context.Movie.ToList();
     }
+
+    public async Task<Movie?> GetMovieByIdAsync(int id) =>
+        await _context.Movie.FirstOrDefaultAsync(i => i.Id == id);
+
+    public async Task DeleteMovieAsync(Movie movie)
+    {
+        _context.Movie.Remove(movie);
+        await _context.SaveChangesAsync();
+    }
 }

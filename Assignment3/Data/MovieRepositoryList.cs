@@ -28,4 +28,21 @@ public class MovieRepositoryList : IMovieRepository
     {
         return _movieList.ToList();
     }
+
+    // our in memory list does not have async functions
+    // so we have to do a non-async version
+    // and manually return the Task object
+    public Task<Movie?> GetMovieByIdAsync(int id)
+    {
+        return Task.FromResult(_movieList.FirstOrDefault(m => m.Id == id));
+    }
+
+    // our in memory list does not have async functions
+    // so we have to do a non-async version
+    // and manually return the Task object
+    public Task DeleteMovieAsync(Movie movie)
+    {
+        _movieList.Remove(movie);
+        return Task.CompletedTask;
+    }
 }
